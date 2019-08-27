@@ -16,8 +16,6 @@
 		.dropmenu:hover img{ transform: rotate(180deg); }
 		.dropmenu:hover .dropdown{ height: 200px; }
 		
-		.wrap .menu{font_size: 16px; z-index: 10; color:#fff; display: block; }
-		
 		.dropdown{ overflow: hidden; text-align: center; color: #fff; font-size: 16px; line-height: 200px; top: 64px;
 					width: 100%; left: 0; height: 0; position: fixed; background: #ff6375; transition: all 300ms; z-index: 9; }
 		
@@ -119,11 +117,6 @@
 			<a href="http://incoding.kr" class="logo">
 				<img src="/images/incoding.png"/>
 			</a>
-			<div class="menu">
-				<a href="pet?action=register">동물등록</a>
-				<a href="">로그인</a>
-				<a href="">회원가입</a>
-			</div>
 		</div>
 	</div>
 
