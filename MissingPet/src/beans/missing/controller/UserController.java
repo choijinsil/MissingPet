@@ -18,9 +18,6 @@ import beans.missing.dao.UserDAO;
 import beans.missing.vo.PetVO;
 import beans.missing.vo.UserVO;
 
-
-import beans.missing.dao.UserDAO;
-
 @WebServlet("/main")
 public class UserController extends HttpServlet {
 	

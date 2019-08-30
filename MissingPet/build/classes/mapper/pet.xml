@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
 <sqlMap namespace="pet">
-
 	<typeAlias alias="pet" type="beans.missing.vo.PetVO"/>
 	
-</sqlMap>
-
 	<!--MYPAGE.JSP 회원MISSING정보조회 -->
-	<select id="select_mymissing"
-		resultClass="beans.missing.vo.PetVO">
+	<select id="select_mymissing" resultClass="pet">
 		select * from missing_info
 		where id=#id#
 	</select>

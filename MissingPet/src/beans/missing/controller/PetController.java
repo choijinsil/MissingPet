@@ -1,6 +1,5 @@
 package beans.missing.controller;
 
-public class PetController {
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

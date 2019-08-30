@@ -1,13 +1,11 @@
 package beans.missing.dao;
 
-public class UserDAO {
 import java.sql.SQLException;
 import java.util.List;
 
 import java.util.Map;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
-import java.util.List;
 import beans.missing.vo.PetVO;
 import beans.missing.vo.UserVO;
 import iba.MySqlMapClient;
@@ -22,10 +20,6 @@ public class UserDAO {
 		smc = MySqlMapClient.getSqlMapInstance();
 	}
 	
-	public List<PetVO> pet_list () {
-		
-		List<PetVO> list = null;
-
 	public boolean insert_user(UserVO vo) { // 회원 가입
 		try {
 			smc.insert("user.insert_user", vo);
@@ -38,8 +32,6 @@ public class UserDAO {
 
 	public boolean select_user(Map<String, String> map) { // 로그인시 회원조회
 		try {
-			list = smc.queryForList("user.pet_list");
-			return list;
 			int t = (Integer) smc.queryForObject("user.select_user", map);
 			if (t == 1) {
 				System.out.println("dao성공 들어왔다.");
@@ -48,7 +40,6 @@ public class UserDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return  list;
 		System.out.println("map>>" + map.get("id") + "," + map.get("pass"));
 		return false;
 	}
@@ -108,6 +99,5 @@ public class UserDAO {
 			return  list;
 		}
 
-	
 
 }
