@@ -16,6 +16,7 @@ function real_check(clicked_name,complete_date){ //(missing_no,null여부)
 	 		location.href="main?action=update_mymissing&missing_no="+clicked_name;
 	 		alert("귀가처리완료 !!");
 	 		return;
+
 		}else{
 			alert("이미 귀가 처리 하셨습니다!!");
 			return;
@@ -174,20 +175,23 @@ section:after {
     <th>품종</th>
     <th>귀가</th>
   </tr>
-   
-   <c:forEach items="${missinglist }" var="missing" > 
+
+  
+   <c:forEach items="${missinglist }" var="missing">   
   <tr>
     <td><img src = "/images/${missing.missing_pic}.jpg"></td>
-    <td><input type="text" name="missing_no" value="${missing.missing_no}"  readonly></td>
+    <td>${missing.missing_no}</td>
     <td><fmt:formatDate value="${missing.write_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td><fmt:formatDate value="${missing.missing_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td>${missing.missing_type}</td>
+
     <td><button type="button" id="btn+${missing.missing_no}"
     onClick="real_check('${missing.missing_no}','${missing.complete_date }')">귀가</button></td>
   </tr>
-  
+
    </c:forEach>
 </table>
+
 </article>
 </section>
 

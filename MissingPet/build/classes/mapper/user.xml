@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
 <sqlMap namespace="user">
+	<typeAlias alias="pet" type="beans.missing.vo.PetVO"/>
+	<typeAlias alias="user" type="beans.missing.vo.UserVO"/>
+	
+	<!-- main페이지에 pet list select -->
+	<select id="pet_list" resultClass="pet">
+		select missing_no, missing_pic, missing_place, missing_date from missing_info
+	</select>
+
 
 	<!-- 회원가입 -->
 	<insert id="insert_user">
@@ -16,7 +24,7 @@
 	</select>
 
 	<!--MYPAGE.JSP 회원정보조회 -->
-	<select id="select_myinfo" resultClass="beans.missing.vo.UserVO">
+	<select id="select_myinfo" resultClass="user">
 		select * from user_info where id=#id#
 	</select>
 

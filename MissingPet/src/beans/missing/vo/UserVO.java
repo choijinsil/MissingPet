@@ -7,6 +7,7 @@ public class UserVO {
 	private String pass;
 	private String email;
 	private String tel;
+	private String adress;
 	private String address;
 	private String black;
 
