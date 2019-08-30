@@ -165,6 +165,7 @@ section:after {
       
       <tr>
       <td colspan="2"><input type="button" value="수정" onClick="validate()">
+      <input type="reset" value="취소"></td>
       <input type="reset" value="취소"> 
       <input type="button" value="탈퇴" onclick="delete_user()">
       </td>
@@ -185,6 +186,7 @@ section:after {
     <th>품종</th>
     <th>귀가</th>
   </tr>
+	<c:out value="${missinglist }"></c:out>
 
    <c:forEach items="${missinglist }" var="missing">   
    <c:set var="pic" value="${missing.missing_pic}"></c:set>
@@ -205,6 +207,7 @@ section:after {
 
 </article>
 </section>
+
 
 </body>
 </html>

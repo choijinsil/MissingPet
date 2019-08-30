@@ -28,6 +28,7 @@
  
   <sqlMap resource="./mapper/pet.xml"/>
   <sqlMap resource="./mapper/user.xml"/>
+  <sqlMap resource="./mapper/witness.xml"/>
   
   
 </sqlMapConfig>
