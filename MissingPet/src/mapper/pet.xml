@@ -5,6 +5,21 @@
 	<typeAlias alias="pet" type="beans.missing.vo.PetVO"/>
 	
 </sqlMap>
+
+	<!--MYPAGE.JSP 회원MISSING정보조회 -->
+	<select id="select_mymissing"
+		resultClass="beans.missing.vo.PetVO">
+		select * from missing_info
+		where id=#id#
+	</select>
+
+	<!--MYPAGE.JSP 회원MISSING귀가처리 -->
+	<update id="update_mymissing">
+		update missing_info
+		set complete_date=sysdate
+		where missing_no = #missing_no#
+	</update>
+
 	<insert id="register">
 		insert into missing_info (missing_no,id,missing_pic,write_date,missing_place,missing_date,missing_type,missing_comment,tip)
 		values (missing_seq.nextval,#id#,#missing_pic#,SYSDATE,#missing_place#,#missing_date#,#missing_type#,#missing_comment#,#tip#)

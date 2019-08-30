@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
-<head>
 <head> 
 <meta charset="UTF-8">
 <title>mainPage</title>
@@ -27,7 +22,6 @@
 		
 		.header{ background: #fff; border-bottom: 1px solid #e0e0e0; overflow: hidden; position: fixed; width: 100%; left: 0; top: 0; }
 
-		.logo{ display: block; float: left; padding: 19px 0 10px 79px;}
 		.logo{ display: block; float: left; padding: 19px 0 10px 79px;  }
 		.logo img{ height: 31px; }
 
@@ -90,12 +84,6 @@
 		.six .bottom{ padding:20px; }
 		.six .bottom .title{ font-size: 16px; font-weight: bold; padding-bottom: 15px; color: #333; }
 		.six .bottom .context{ font-size: 12spx; line-height: 1.5; height: 45px; color: #777;}
-		.item{ width: 30%; margin: 0 1.5% 20px; border: 1px solid #e0e0e0; box-sizing: border-box; float: left;}
-		.item .top{ height: 200px; background-size: cover; padding: 50px; border-bottom: 1px solid #e0e0e0; transition: 300ms; background-repeat: no-repeat;}
-		.item .top:hover { transform: scale(1.05); }
-		.item .bottom{ padding:20px; }
-		.item .bottom .title{ font-size: 16px; font-weight: bold; padding-bottom: 15px; color: #333; }
-		.item .bottom .context{ font-size: 12px; line-height: 1.5; height: 45px; color: #777; }
 
 		.footer{ padding: 15px 0 30px; border-top: 2px solid #efefef; margin-top: 40px; overflow: hidden;}
 		.footer .left{ float: left; }
@@ -119,13 +107,6 @@
 		
 
 	</style>
-	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script>
-		var no;
-		function move(no){
-			location.replace('pet?action=map&no=' +no);
-		}
-	</script>
 <body>
 	<div class="dropmenu">
 		<img src="/images/bottom.png"/>
@@ -137,21 +118,17 @@
 			<a href="http://incoding.kr" class="logo">
 				<img src="/images/incoding.png"/>
 			</a>
-			<a href="pet?action=registerForm">동물등록</a>
 			<c:choose>
-				<c:when test="${loginId eq null }"> <%-- 로그인이 안된 상태라면 --%>
-					<a href="main?action=joinForm" class="logo" style="color: black;">회원 가입 </a> 
-					<a href="main?action=loginForm" class="logo" style="color: black;">로그인</a>
-				</c:when>
-				
-				<c:otherwise><%-- 로그인이 된 상태 --%>
-					<a class="logo" style="color: black">
-						<font color="green">${loginId }</font>님 환영합니다.~^^
-					</a>
-					<a href="pet?action=registerForm" class="logo" style="color: black;">동물등록</a>
-					<a href="main?action=user_mypage" class="logo" style="color: black;">마이페이지</a> <%-- 경로수정 --%>
-					<a href="main?action=loginOut" class="logo" style="color: black;">로그아웃</a>
-				</c:otherwise>
+			<c:when test="${loginId eq null }"> <%-- 로그인이 안된상태라면 --%>
+				<a href="main?action=joinForm" class="logo" style="color: black;">회원 가입 </a> 
+				<a href="main?action=loginForm" class="logo" style="color: black;">로그인</a>
+			</c:when>
+			
+			<c:otherwise><%-- 로그인이 된상태 --%>
+				<a class="logo" style="color: black;">${loginId }님 환영합니다.~^^</a>
+				<a href="main" class="logo" style="color: black;">마이페이지</a> <%-- 경로수정 --%>
+				<a href="main?action=loginOut" class="logo" style="color: black;">로그아웃</a>
+			</c:otherwise>
 			</c:choose>
 		</div>
 	</div>
@@ -168,7 +145,6 @@
 		</div>
 	</div>
 
-	
 	<div class="article wrap">
 		<div class="one">
 			<div class="top" style="background-image:url('/images/1.jpg')"></div>
@@ -196,11 +172,6 @@
 
 		<div class="four">
 				<div class="top" style="background-image:url('/images/4.jpg')"></div>
-		<c:forEach items="${list}" var="pet">
-			<c:set var="pic" value="${pet.missing_pic}"></c:set>
-			<c:set var="array" value="${fn:split(pic,',')}"></c:set>
-			<div class="item">
-				<div class="top" style="background-image:url('${array[0]}');" onclick="move(${pet.missing_no})"></div>
 				<div class="bottom">
 					<div class="title">옥타곤</div>
 					<div class="context">스크롤.js을 이용한 클럽 소개 랜딩페이지</div>
@@ -220,18 +191,12 @@
 				<div class="bottom">
 					<div class="title">유니티 게임</div>
 					<div class="context">유니티 강의도 들어보실래요? 오홍홍</div>
-					<div class="title"><fmt:formatDate value="${pet.missing_date}" pattern="yyyy-MM-dd hh:mm"/></div>
-					<div class="context">${pet.missing_place}</div>
 				</div>
 		</div>
-			</div>
-		</c:forEach>
 	</div>
 
 	<div class="footer wrap">
 		<div class="left">
-			<div class="title">인코딩 - incoding</div>
-			<div class="context">누구나 할 수 있는 웹사이트 만들기</div>
 			<div class="title">beans-beans</div>
 			<div class="context">
 				우린 누구인가? <br/><br/>
@@ -245,6 +210,5 @@
 			<a href="https://www.facebook.com/incoding2015" target="_blank">페이스북</a>
 		</div>
 	</div>
-	
 </body>
 </html>

@@ -76,25 +76,11 @@ drop sequence missing_seq;
 drop sequence wit_seq;
 
 
-------------------------------------------------- 샘플 데이터 --------------------------------------------
-
--- user 샘플 입력
-insert into user_info values ('orange', '오렌지', '1234', 'orange@gmail.com', '010-1234-1234', '서울시 마포구 공덕동 롯데캐슬프레지던트', 'N');
-
-
-
--- 실종동물정보 테스트 데이터
-INSERT INTO MISSING_INFO (missing_no, id, missing_pic, write_date, missing_place, missing_date, missing_type, missing_comment, tip) VALUES (missing_seq.nextval,'test01', 'missing_pic 01', sysdate, 'missing_place 01', sysdate, 'missing_type 01', 'N', 'tip 01');
-INSERT INTO MISSING_INFO (missing_no, id, missing_pic, write_date, missing_place, missing_date, missing_type, missing_comment, tip) VALUES (missing_seq.nextval,'test01', 'missing_pic 06', sysdate, 'missing_place 02', sysdate, 'missing_type 02', 'N', 'tip 02');
-
-
-
 
 ------------------------ 쿼리문 테스트
 select * from user_info;
 select * from missing_info;
 select * from wit_info;
-
 
 
 	
