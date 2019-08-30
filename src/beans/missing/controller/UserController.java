@@ -24,12 +24,10 @@ public class UserController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-
  
 		if (action == null || action.equals("main")) {// main.jsp 접속
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/main.jsp");
 			rd.forward(request, response);
-		}
 			
 		}else if(action.equals("joinForm")) {//회원 가입
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/join.jsp");
@@ -80,5 +78,4 @@ public class UserController extends HttpServlet {
 			response.sendRedirect("/main?action=main");
 	}
 	}
-
 }
