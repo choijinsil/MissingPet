@@ -1,6 +1,6 @@
 package beans.missing.dao;
 
-public class PetDAO {
+
 import java.sql.SQLException;
 
 import com.ibatis.sqlmap.client.SqlMapClient;

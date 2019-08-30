@@ -1,6 +1,5 @@
 package beans.missing.controller;
 
-public class WitnessController {
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;

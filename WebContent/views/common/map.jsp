@@ -6,7 +6,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>지도 띄우기</title>
 <title>map(바탕은 카카오맵, ajax로 실종동물,목격동물 정보 보이는 창 띄우기)</title>
 <style type="text/css">
 	.map2{ display:inline; float:left; width: 80%; height: 500px; margin-top: 30px;}
@@ -62,20 +61,5 @@
 	<div id="d1" style="width:100%; height:100%; float:left; background:red;"><img id="img" src="../../images/dog_icon1.png" style="position:relative; left:100px; top:150px;"></div> 
 	<div id="d2" style="width:20%; height:100%; float:right; background:blue; visibility:hidden;">2</div>
 	</div>
-  	
-
-	<div id="map" style="width:500px;height:400px;"></div>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7b34394e2d8b59d2f6ccd7212da74043"></script>
-	<script type="text/javascript">
-		var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-		var options = { //지도를 생성할 때 필요한 기본 옵션
-			center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-			level: 3 //지도의 레벨(확대, 축소 정도)
-		};
-		
-		var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-	</script>
-	
 </body>
-
 </html>

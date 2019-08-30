@@ -12,15 +12,12 @@
 
 	<!-- 회원가입 -->
 	<insert id="insert_user">
-		insert into user_info 
 		insert into user_info
 		values(#id#,#name#,#pass#,#email#,#tel#,#address#,#black#)
 	</insert>
 	
-
 	<!-- 로그인시 회원조회 -->
 	<select id="select_user" resultClass="int">
-		select count(*) from user_info
 		select count(*) from
 		user_info
 		where id=#id# and pass=#pass#

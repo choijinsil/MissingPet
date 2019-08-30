@@ -76,6 +76,19 @@ drop sequence missing_seq;
 drop sequence wit_seq;
 
 
+------------------------------------------------- 샘플 데이터 --------------------------------------------
+-- user_info
+
+insert into user_info (id, name, pass, email, tel, address, black) 
+values ('orange', '오렌지', '1234', 'orange@gmail.com', '010-1234-4567', '서울시 마포구 공덕동 롯데캐슬프레지던트', 'N');
+
+id	     varchar2(50)        not null,
+	name	 varchar2(50)        not null,
+	pass	 varchar2(50)        not null,
+	email	 varchar2(50 char)   not null,
+	tel		 varchar2(50)        not null,
+	address	 varchar2(100)       not null,
+	black	 varchar2(10)            null
 
 ------------------------ 쿼리문 테스트
 select * from user_info;

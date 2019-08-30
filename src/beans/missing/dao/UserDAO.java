@@ -1,7 +1,6 @@
 package beans.missing.dao;
 
 import java.sql.SQLException;
-import java.util.Map;
 import java.util.List;
 
 import java.util.Map;
@@ -20,7 +19,6 @@ public class UserDAO {
 	public UserDAO() {
 		smc = MySqlMapClient.getSqlMapInstance();
 	}
-
 	
 	public boolean insert_user(UserVO vo) { // 회원 가입
 		try {
@@ -36,7 +34,6 @@ public class UserDAO {
 		try {
 			int t = (Integer) smc.queryForObject("user.select_user", map);
 			if (t == 1) {
-				System.out.println("dao성공 들어왔다.");
 				return true;
 			}
 		} catch (SQLException e) {

@@ -9,8 +9,6 @@ public class PetVO {
 	private Date write_date;
 	private String missing_place;
 	private Date missing_date;
-	private String type;
-	private String comment;
 	private String missing_type;
 	private String missing_comment;
 	private String tip;
@@ -21,8 +19,6 @@ public class PetVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PetVO(int missing_no, String missing_pic, Date write_date, String missing_place, Date missing_date,
-			String type, String comment, String tip, Date complete_date) {
 	public PetVO(int missing_no, String id, String missing_pic, Date write_date, String missing_place,
 			Date missing_date, String missing_type, String missing_comment, String tip, Date complete_date,
 			String tel) {
@@ -33,8 +29,6 @@ public class PetVO {
 		this.write_date = write_date;
 		this.missing_place = missing_place;
 		this.missing_date = missing_date;
-		this.type = type;
-		this.comment = comment;
 		this.missing_type = missing_type;
 		this.missing_type = missing_type;
 		this.missing_comment = missing_comment;
@@ -91,27 +85,19 @@ public class PetVO {
 		this.missing_date = missing_date;
 	}
 
-	public String getType() {
-		return type;
 	public String getMissing_type() {
 		return missing_type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
 	public void setMissing_type(String missing_type) {
 		this.missing_type = missing_type;
 		this.missing_type =missing_type;
 	}
 
-	public String getComment() {
-		return comment;
 	public String getMissing_comment() {
 		return missing_comment;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
 	public void setMissing_comment(String missing_comment) {
 		this.missing_comment = missing_comment;
 	}
@@ -142,9 +128,6 @@ public class PetVO {
 
 	@Override
 	public String toString() {
-		return "PetVO [missing_no=" + missing_no + ", missing_pic=" + missing_pic + ", write_date=" + write_date
-				+ ", missing_place=" + missing_place + ", missing_date=" + missing_date + ", type=" + type
-				+ ", comment=" + comment + ", tip=" + tip + ", complete_date=" + complete_date + "]";
 		return "PetVO [missing_no=" + missing_no + ", id=" + id + ", missing_pic=" + missing_pic + ", write_date="
 				+ write_date + ", missing_place=" + missing_place + ", missing_date=" + missing_date + ", missing_type="
 				+ missing_type + ", missing_comment=" + missing_comment + ", tip=" + tip + ", complete_date="

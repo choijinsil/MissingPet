@@ -3,7 +3,6 @@
 <sqlMap namespace="pet">
 	<typeAlias alias="pet" type="beans.missing.vo.PetVO"/>
 	
-</sqlMap>
 	<!--MYPAGE.JSP 회원MISSING정보조회 -->
 	<select id="select_mymissing" resultClass="pet">
 		select * from missing_info
