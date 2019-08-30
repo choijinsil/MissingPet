@@ -134,6 +134,4 @@ public class PetVO {
 				+ complete_date + ", tel=" + tel + "]";
 	}
 
-	
-
 }

@@ -160,6 +160,12 @@ public class UserController extends HttpServlet {
 
 			// 리다이렉트이동
 			response.sendRedirect("/views/user/mypage.jsp");
+		}else if(action.equals("withdraw")) {
+			
+			if(userDao.delete_user(loginId)) { // 회원 탈퇴
+				request.getSession().invalidate();
+				response.sendRedirect("/main");
+			}
 		}
 	}
 }

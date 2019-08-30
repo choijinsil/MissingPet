@@ -17,14 +17,19 @@ function real_check(clicked_name,complete_date){ //(missing_no,null여부)
 	 		location.href="main?action=update_mymissing&missing_no="+clicked_name;
 	 		alert("귀가처리완료 !!");
 	 		return;
-
 		}else{
 			alert("이미 귀가 처리 하셨습니다!!");
 			return;
 		}
-		
 	}else{   //취소
 	 	return;
+	}
+}
+
+function delete_user(){
+	if(confirm("정말 탈퇴하시겠습니까?")){
+		location.href='main?action=withdraw'
+		return;
 	}
 }
 
@@ -116,6 +121,7 @@ section:after {
 </head>
 <body>
 <h2>MYPAGE.JSP</h2>
+<a href="main">메인으로 돌아가기</a>
 <hr>
 <section>
 <nav>
@@ -159,7 +165,9 @@ section:after {
       
       <tr>
       <td colspan="2"><input type="button" value="수정" onClick="validate()">
-      <input type="reset" value="취소"></td>
+      <input type="reset" value="취소"> 
+      <input type="button" value="탈퇴" onclick="delete_user()">
+      </td>
       </tr> 
    </table>
 </form>
@@ -167,6 +175,7 @@ section:after {
   
 <article>
 <h2>MY MISSING</h2>
+<a href="main?action=user_mypost">게시글 관리하기</a>
 <table style="width:100%"  border= "1px">
   <tr>
     <th>사진</th>
@@ -196,7 +205,6 @@ section:after {
 
 </article>
 </section>
-
 
 </body>
 </html>
