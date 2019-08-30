@@ -7,12 +7,13 @@
 <head>
 
 <script type="text/javascript">
-function real_check(clicked_id,complete_date){ 
+function real_check(clicked_no,complete_date){ 
 	
 	if (confirm("정말 귀가처리 하시겠습니까??") == true){    //확인 
-	 	 		
+	 	 console.log(clicked_no);
 	 	if(!complete_date){//compelete_date가 null이라면 
 	 		alert("귀가처리완료 !!");
+	 
 	 		document.user_missing.submit();
 		}else{
 			alert("이미 귀가 처리 하셨습니다!!");
@@ -181,20 +182,24 @@ section:after {
     <th>품종</th>
     <th>귀가</th>
   </tr>
-   
-   <c:forEach items="${missinglist }" var="missing"> 
+  
+   <c:forEach items="${missinglist }" var="missing">   
    ${missing.complete_date }
   <tr>
     <td><img src = "/images/${missing.missing_pic}.jpg"></td>
-    <td><input type="text" name="missing_no" value="${missing.missing_no}"  readonly></td>
+    <td>${missing.missing_no}</td>
+  <!--  <input type="text" name="missing_no" value="${missing.missing_no}"  readonly> -->
     <td><fmt:formatDate value="${missing.write_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td><fmt:formatDate value="${missing.missing_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td>${missing.missing_type}</td>
-    <td><button type="button"  onClick="real_check(this.id,'${missing.complete_date }')">귀가</button></td>
+    <td><button type="button"  name="missing_no" value="${missing.missing_no}" onClick="real_check( '${missing.missing_no}' ,'${missing.complete_date }')" >귀가/</td>
+ 
   </tr>
-   </c:forEach>
+  
+</c:forEach>
 </table>
-</form>
+ </form>
+ 
 </article>
 </section>
 
