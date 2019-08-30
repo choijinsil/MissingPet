@@ -21,7 +21,6 @@ import beans.missing.vo.PetVO;
 @WebServlet("/pet")
 public class PetController extends HttpServlet{
 	
-	String id = "orange";
 	PetDAO dao = new PetDAO();
 	
 	@Override
@@ -46,6 +45,7 @@ public class PetController extends HttpServlet{
 			int maxSize = 10 * 1024 * 1024;
 			MultipartRequest mreq = new MultipartRequest(request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 			
+			String id = (String) request.getSession().getAttribute("loginId");
 			String place = mreq.getParameter("missing_place");
 			String date = mreq.getParameter("missing_date");
 			String time = mreq.getParameter("missing_time");
@@ -75,7 +75,6 @@ public class PetController extends HttpServlet{
 			}else {
 				nameList = "/images/" +saveFileName1 +"," +"/images/" +saveFileName2 +"," +"/images/" +saveFileName3;
 			}
-			
 			
 			PetVO vo = new PetVO(0,id,nameList,null,place,to,type,comment,tip,null,null);
 
