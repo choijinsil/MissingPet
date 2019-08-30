@@ -26,6 +26,10 @@
 		set name=#name#, pass=#pass#, email=#email#, tel=#tel#, address=#address#
 		where id=#id#
 	</update>
-
+	
+	<!-- 블랙리스트 회원정보 조회 -->
+	<select id="select_black_user" resultClass="String">
+		select black from user_info where id=#id# 
+	</select>
 
 </sqlMap>

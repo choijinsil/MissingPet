@@ -18,10 +18,9 @@ import beans.missing.dao.UserDAO;
 import beans.missing.vo.PetVO;
 import beans.missing.vo.UserVO;
 
-
 @WebServlet("/main")
 public class UserController extends HttpServlet {
-	
+
 	UserDAO userDao = new UserDAO();
 	String loginId;
 
@@ -41,6 +40,7 @@ public class UserController extends HttpServlet {
 			UserVO vo = new UserVO(request.getParameter("id"), request.getParameter("name"),
 					request.getParameter("pass"), request.getParameter("email"), request.getParameter("tel"),
 					request.getParameter("address"), "N");
+			
 			if (userDao.insert_user(vo)) {// 회원 가입 성공시
 				response.sendRedirect("/main?action=main");
 			} else {
@@ -60,19 +60,28 @@ public class UserController extends HttpServlet {
 			map.put("id", loginId);
 			map.put("pass", pass);
 
-			if (userDao.select_user(map)) {// 로그인 성공시
+			if (userDao.select_user(map)&& "N".equals(userDao.select_black_user(loginId))) {
+				// id, pass가 맞고 블랙리스트값이 N인 경우 --로그인 성공!
 				System.out.println("로그인 성공!");
 				request.getSession().setAttribute("loginId", loginId);
 				RequestDispatcher rd = request.getRequestDispatcher("/views/common/main.jsp");
 				rd.forward(request, response);
-				
-				
+
 			} else { // 로그인 실패시
-				System.out.println("로그인 실패!");
+				
+				if ("Y".equals(userDao.select_black_user(loginId))) {// 블랙리스트가 맞으면 로그인 실패
+					response.setContentType("text/html; charset=utf-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('회원님은 현재 블랙리스트 상태 입니다.'); history.back();</script>");
+					out.flush();
+					return;
+				} 
+				//아이디가 틀렸을 경우
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('로그인 실패 했지롱~! 다시해라!'); history.back();</script>");
 				out.flush();
+				return;
 			}
 
 		} else if (action.equals("loginOut")) {// 로그아웃
@@ -127,13 +136,13 @@ public class UserController extends HttpServlet {
 
 			// ID와 MISSING_NO(공고번호) 얻기
 			int missing_no = Integer.parseInt(request.getParameter("missing_no"));
-			System.out.println("missing_no>>"+missing_no);
-			
+			System.out.println("missing_no>>" + missing_no);
+
 			// 특정MISSING_NO(공고번호)의 인계날짜 SYSDATE입력
 			UserDAO userDao = new UserDAO();
-			if(userDao.update_mymissing(missing_no)) {
+			if (userDao.update_mymissing(missing_no)) {
 				System.out.println("인계정보 수정 완료");
-			}else {
+			} else {
 				System.out.println("인계정보 수정 실패");
 			}
 
