@@ -8,7 +8,7 @@ public class PetVO {
 	private Date write_date;
 	private String missing_place;
 	private Date missing_date;
-	private String type;
+	private String missing_type;
 	private String comment;
 	private String tip;
 	private Date complete_date;
@@ -18,14 +18,14 @@ public class PetVO {
 	}
 
 	public PetVO(int missing_no, String missing_pic, Date write_date, String missing_place, Date missing_date,
-			String type, String comment, String tip, Date complete_date) {
+			String missing_type, String comment, String tip, Date complete_date) {
 		super();
 		this.missing_no = missing_no;
 		this.missing_pic = missing_pic;
 		this.write_date = write_date;
 		this.missing_place = missing_place;
 		this.missing_date = missing_date;
-		this.type = type;
+		this.missing_type = missing_type;
 		this.comment = comment;
 		this.tip = tip;
 		this.complete_date = complete_date;
@@ -71,12 +71,12 @@ public class PetVO {
 		this.missing_date = missing_date;
 	}
 
-	public String getType() {
-		return type;
+	public String getMissing_type() {
+		return missing_type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setMissing_type(String missing_type) {
+		this.missing_type =missing_type;
 	}
 
 	public String getComment() {
@@ -106,7 +106,7 @@ public class PetVO {
 	@Override
 	public String toString() {
 		return "PetVO [missing_no=" + missing_no + ", missing_pic=" + missing_pic + ", write_date=" + write_date
-				+ ", missing_place=" + missing_place + ", missing_date=" + missing_date + ", type=" + type
+				+ ", missing_place=" + missing_place + ", missing_date=" + missing_date + ", missing_type=" + missing_type
 				+ ", comment=" + comment + ", tip=" + tip + ", complete_date=" + complete_date + "]";
 	}
 

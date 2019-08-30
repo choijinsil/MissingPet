@@ -7,21 +7,21 @@ public class UserVO {
 	private String pass;
 	private String email;
 	private String tel;
-	private String adress;
+	private String address;
 	private String black;
 
 	public UserVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserVO(String id, String name, String pass, String email, String tel, String adress, String black) {
+	public UserVO(String id, String name, String pass, String email, String tel, String address, String black) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.pass = pass;
 		this.email = email;
 		this.tel = tel;
-		this.adress = adress;
+		this.address = address;
 		this.black = black;
 	}
 
@@ -65,12 +65,12 @@ public class UserVO {
 		this.tel = tel;
 	}
 
-	public String getAdress() {
-		return adress;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setAdress(String adress) {
-		this.adress = adress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getBlack() {
@@ -84,7 +84,7 @@ public class UserVO {
 	@Override
 	public String toString() {
 		return "UserVO [id=" + id + ", name=" + name + ", pass=" + pass + ", email=" + email + ", tel=" + tel
-				+ ", adress=" + adress + ", black=" + black + "]";
+				+ ", address=" + address + ", black=" + black + "]";
 	}
 
 }

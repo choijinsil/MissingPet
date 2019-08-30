@@ -26,7 +26,7 @@
   
   <!-- ★  앞으로 sql문 추가되는 xml파일을 등록 ★  -->
  
-  <sqlMap resource="./mapper/dvd.xml"/>
+  <sqlMap resource="./mapper/pet.xml"/>
   
   
 </sqlMapConfig>
