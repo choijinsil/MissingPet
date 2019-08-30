@@ -9,8 +9,6 @@ public class PetVO {
 	private Date write_date;
 	private String missing_place;
 	private Date missing_date;
-	private String type;
-	private String comment;
 	private String missing_type;
 	private String missing_comment;
 	private String tip;
