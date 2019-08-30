@@ -127,6 +127,7 @@
 	</div>
 	<div class="main">
 		<a href="main?action=main">[메인으로]</a>
+		<a href="wit?action=wit">목격신고</a>
 	</div>
 	<div class="section" id="section0">
 		<div class="swiper-container">

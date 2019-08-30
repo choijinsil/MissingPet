@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,12 +17,10 @@ function real_check(clicked_name,complete_date){ //(missing_no,null여부)
 	 		location.href="main?action=update_mymissing&missing_no="+clicked_name;
 	 		alert("귀가처리완료 !!");
 	 		return;
-
 		}else{
 			alert("이미 귀가 처리 하셨습니다!!");
 			return;
 		}
-		
 	}else{   //취소
 	 	return;
 	}
@@ -175,11 +174,13 @@ section:after {
     <th>품종</th>
     <th>귀가</th>
   </tr>
+	<c:out value="${missinglist }"></c:out>
 
-  
    <c:forEach items="${missinglist }" var="missing">   
+   <c:set var="pic" value="${missing.missing_pic}"></c:set>
+   <c:set var="array" value="${fn:split(pic,',')}"></c:set>
   <tr>
-    <td><img src = "/images/${missing.missing_pic}.jpg"></td>
+    <td><img src = "${array[0]}"></td>
     <td>${missing.missing_no}</td>
     <td><fmt:formatDate value="${missing.write_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td><fmt:formatDate value="${missing.missing_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
