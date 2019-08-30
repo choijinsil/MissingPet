@@ -75,14 +75,14 @@ drop table user_info;
 drop sequence missing_seq;
 drop sequence wit_seq;
 
-
-
 ------------------------ 쿼리문 테스트
 select * from user_info;
 select * from missing_info;
 select * from wit_info;
 
-
+-- 실종동물정보 테스트 데이터
+INSERT INTO MISSING_INFO (missing_no, id, missing_pic, write_date, missing_place, missing_date, missing_type, missing_comment, tip) VALUES (missing_seq.nextval,'test01', 'missing_pic 01', sysdate, 'missing_place 01', sysdate, 'missing_type 01', 'N', 'tip 01');
+INSERT INTO MISSING_INFO (missing_no, id, missing_pic, write_date, missing_place, missing_date, missing_type, missing_comment, tip) VALUES (missing_seq.nextval,'test01', 'missing_pic 06', sysdate, 'missing_place 02', sysdate, 'missing_type 02', 'N', 'tip 02');
 	
 	
 	

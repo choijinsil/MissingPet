@@ -2,9 +2,10 @@ package beans.missing.dao;
 
 import java.sql.SQLException;
 import java.util.Map;
-
 import com.ibatis.sqlmap.client.SqlMapClient;
-
+import java.util.List;
+import com.ibatis.sqlmap.client.SqlMapClient;
+import beans.missing.vo.PetVO;
 import beans.missing.vo.UserVO;
 import iba.MySqlMapClient;
 
@@ -36,6 +37,48 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		System.out.println("map>>" + map.get("id") + "," + map.get("pass"));
+		return false;
+	}
+
+	//<!--MYPAGE.JSP 회원정보조회 -->
+	public UserVO select_myinfo(String id) {
+		try {
+			return (UserVO) smc.queryForObject("user.select_myinfo", id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	//<!--MYPAGE.JSP 회원MISSING정보조회 -->	
+	public List<PetVO> select_mymissing(String id) {
+		try {
+			return (List<PetVO>) smc.queryForList("pet.select_mymissing", id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	//<!--MYPAGE.JSP 회원정보수정 -->	
+	public boolean update_myinfo(UserVO user) {
+		try {
+			if (smc.update("user.update_myinfo", user) == 1)
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	//<!--MYPAGE.JSP 회원MISSING귀가처리 -->
+	public boolean update_mymissing(int missing_no) {
+		try {
+			if (smc.update("pet.update_mymissing", missing_no) != 0)
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 

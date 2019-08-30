@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
 <sqlMap namespace="user">
-	
+
 	<!-- 회원가입 -->
 	<insert id="insert_user">
-		insert into user_info 
+		insert into user_info
 		values(#id#,#name#,#pass#,#email#,#tel#,#address#,#black#)
 	</insert>
-	
+
 	<!-- 로그인시 회원조회 -->
 	<select id="select_user" resultClass="int">
-		select count(*) from user_info
+		select count(*) from
+		user_info
 		where id=#id# and pass=#pass#
 	</select>
 
-	
+	<!--MYPAGE.JSP 회원정보조회 -->
+	<select id="select_myinfo" resultClass="beans.missing.vo.UserVO">
+		select * from user_info where id=#id#
+	</select>
+
+	<!--MYPAGE.JSP 회원정보수정 -->
+	<update id="update_myinfo">
+		update user_info
+		set name=#name#, pass=#pass#, email=#email#, tel=#tel#, address=#address#
+		where id=#id#
+	</update>
+
+
 </sqlMap>

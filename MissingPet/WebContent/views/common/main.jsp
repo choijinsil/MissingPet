@@ -128,7 +128,7 @@
 			
 			<c:otherwise><%-- 로그인이 된상태 --%>
 				<a class="logo" style="color: black;">${loginId }님 환영합니다.~^^</a>
-				<a href="main" class="logo" style="color: black;">마이페이지</a> <%-- 경로수정 --%>
+				<a href="main?action=user_mypage" class="logo" style="color: black;">마이페이지</a> <%-- 경로수정 --%>
 				<a href="main?action=loginOut" class="logo" style="color: black;">로그아웃</a>
 			</c:otherwise>
 			</c:choose>
