@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,10 +177,11 @@ section:after {
     <th>귀가</th>
   </tr>
 
-  
    <c:forEach items="${missinglist }" var="missing">   
+   <c:set var="pic" value="${missing.missing_pic}"></c:set>
+   <c:set var="array" value="${fn:split(pic,',')}"></c:set>
   <tr>
-    <td><img src = "/images/${missing.missing_pic}.jpg"></td>
+    <td><img src = "${array[0]}"></td>
     <td>${missing.missing_no}</td>
     <td><fmt:formatDate value="${missing.write_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td><fmt:formatDate value="${missing.missing_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
