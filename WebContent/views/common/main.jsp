@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
 <head> 
 <meta charset="UTF-8">
 <title>mainPage</title>
@@ -23,7 +22,6 @@
 		
 		.header{ background: #fff; border-bottom: 1px solid #e0e0e0; overflow: hidden; position: fixed; width: 100%; left: 0; top: 0; }
 
-		.logo{ display: block; float: left; padding: 19px 0 10px 79px;}
 		.logo{ display: block; float: left; padding: 19px 0 10px 79px;  }
 		.logo img{ height: 31px; }
 
@@ -128,7 +126,7 @@
 			
 			<c:otherwise><%-- 로그인이 된상태 --%>
 				<a class="logo" style="color: black;">${loginId }님 환영합니다.~^^</a>
-				<a href="main?action=user_mypage" class="logo" style="color: black;">마이페이지</a> <%-- 경로수정 --%>
+				<a href="main" class="logo" style="color: black;">마이페이지</a> <%-- 경로수정 --%>
 				<a href="main?action=loginOut" class="logo" style="color: black;">로그아웃</a>
 			</c:otherwise>
 			</c:choose>
@@ -199,8 +197,6 @@
 
 	<div class="footer wrap">
 		<div class="left">
-			<div class="title">인코딩 - incoding</div>
-			<div class="context">누구나 할 수 있는 웹사이트 만들기</div>
 			<div class="title">beans-beans</div>
 			<div class="context">
 				우린 누구인가? <br/><br/>

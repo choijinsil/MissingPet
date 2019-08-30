@@ -7,24 +7,24 @@
 <head>
 
 <script type="text/javascript">
-function real_check(clicked_no,complete_date){ 
+
+function real_check(clicked_name,complete_date){ //(missing_no,null여부)
 	
 	if (confirm("정말 귀가처리 하시겠습니까??") == true){    //확인 
-	 	 console.log(clicked_no);
-	 	if(!complete_date){//compelete_date가 null이라면 
+	 	 
+	 	if(!complete_date){ //compelete_date가 null이라면 
+	 		location.href="main?action=update_mymissing&missing_no="+clicked_name;
 	 		alert("귀가처리완료 !!");
-	 
-	 		document.user_missing.submit();
+	 		return;
+
 		}else{
 			alert("이미 귀가 처리 하셨습니다!!");
 			return;
 		}
 		
 	}else{   //취소
-	 return;
+	 	return;
 	}
-	
-	
 }
 
 function validate() {
@@ -120,59 +120,52 @@ section:after {
 <nav>
 <h2>MY INFO</h2>
 <form name="user_info" action="/main?action=update_myinfo" method="post">
-<c:forEach items="${userlist }" var="user"> 
    <table style="width:100%" border= "1px">
       <tr>
       <th>아이디</th>
-      <td><input type="text" name="id" value="${user.id}" readonly></td>
+      <td><input type="text" name="id" value="${userlist.id}" readonly></td>
       </tr>
       
       <tr>
       <th>비밀번호</th>
-      <td><input type="password" id="pass" name="pass" value="${user.pass}"></td>
+      <td><input type="password" id="pass" name="pass" value="${userlist.pass}"></td>
       </tr>
       
       <tr>
       <th>이름</th>
-      <td><input type="text" id="name" name="name" value="${user.name}"></td>
+      <td><input type="text" id="name" name="name" value="${userlist.name}"></td>
       </tr>
       
       <tr>
       <th>이메일</th>
-      <td><input type="text" id="email" name="email" value="${user.email}"></td>
+      <td><input type="text" id="email" name="email" value="${userlist.email}"></td>
       </tr>
       
       <tr>
       <th>연락처</th>
-      <td><input type="text" id="tel" name="tel" value="${user.tel}"></td>
+      <td><input type="text" id="tel" name="tel" value="${userlist.tel}"></td>
       </tr>
       
       <tr>
       <th>주소</th>
-      <td><input type="text" id="address" name="address" value="${user.address}"></td>
+      <td><input type="text" id="address" name="address" value="${userlist.address}"></td>
       </tr>
       
       <tr>
       <th>블랙리스트</th>
-      <td><input type="text" name="black" value="${user.black}" readonly></td>
+      <td><input type="text" name="black" value="${userlist.black}" readonly></td>
       </tr>
       
       <tr>
       <td colspan="2"><input type="button" value="수정" onClick="validate()">
       <input type="reset" value="취소"></td>
       </tr> 
-       
    </table>
-</c:forEach>
 </form>
 </nav>
-
-  
-  
   
 <article>
 <h2>MY MISSING</h2>
-<form name="user_missing" action="/main?action=update_mymissing&id=${id}" method="post">
 <table style="width:100%"  border= "1px">
   <tr>
     <th>사진</th>
@@ -182,24 +175,23 @@ section:after {
     <th>품종</th>
     <th>귀가</th>
   </tr>
+
   
    <c:forEach items="${missinglist }" var="missing">   
-   ${missing.complete_date }
   <tr>
     <td><img src = "/images/${missing.missing_pic}.jpg"></td>
     <td>${missing.missing_no}</td>
-  <!--  <input type="text" name="missing_no" value="${missing.missing_no}"  readonly> -->
     <td><fmt:formatDate value="${missing.write_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td><fmt:formatDate value="${missing.missing_date}" pattern="yyyy.MM.dd HH:mm:ss" /></td>
     <td>${missing.missing_type}</td>
-    <td><button type="button"  name="missing_no" value="${missing.missing_no}" onClick="real_check( '${missing.missing_no}' ,'${missing.complete_date }')" >귀가/</td>
- 
+
+    <td><button type="button" id="btn+${missing.missing_no}"
+    onClick="real_check('${missing.missing_no}','${missing.complete_date }')">귀가</button></td>
   </tr>
-  
-</c:forEach>
+
+   </c:forEach>
 </table>
- </form>
- 
+
 </article>
 </section>
 
