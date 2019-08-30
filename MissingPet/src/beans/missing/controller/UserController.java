@@ -29,7 +29,6 @@ public class UserController extends HttpServlet {
 		if (action == null || action.equals("main")) {// main.jsp 접속
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/main.jsp");
 			rd.forward(request, response);
-		}
 			
 		}else if(action.equals("joinForm")) {//회원 가입
 			RequestDispatcher rd = request.getRequestDispatcher("/views/common/join.jsp");
