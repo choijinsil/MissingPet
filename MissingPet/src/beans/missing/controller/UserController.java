@@ -22,25 +22,25 @@ import beans.missing.vo.UserVO;
 public class UserController extends HttpServlet {
 
 	UserDAO userDao = new UserDAO();
-	String loginId;
+	String loginId; //로그인 아이디 : 로그인 성공시 세션에 저장, 로그아웃 탈퇴시 null
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();//세션 객체 생성
+		
 		String action = request.getParameter("action");
 
 		UserDAO dao = new UserDAO();
 		
 		if (action == null || action.equals("main")) {// main.jsp 접속
 			
-			request.getSession().setAttribute("list", dao.pet_list());
+			session.setAttribute("list", dao.pet_list());
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/main.jsp");
-			rd.forward(request, response);
+			request.getRequestDispatcher("/views/common/main.jsp").forward(request, response);
 		} else if (action.equals("joinForm")) {// 회원 가입
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/join.jsp");
-			rd.forward(request, response);
-
+			request.getRequestDispatcher("/views/common/join.jsp").forward(request, response);
 		} else if (action.equals("join")) { // 회원가입 버튼 누르면
 			UserVO vo = new UserVO(request.getParameter("id"), request.getParameter("name"),
 					request.getParameter("pass"), request.getParameter("email"), request.getParameter("tel"),
@@ -49,14 +49,12 @@ public class UserController extends HttpServlet {
 			if (userDao.insert_user(vo)) {// 회원 가입 성공시
 				response.sendRedirect("/main?action=main");
 			} else {
-				System.out.println("회원가입 실패");
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('회원가입 실패 하였습니다!'); history.back();</script>");
 				out.flush();
 			}
 		} else if (action.equals("loginForm")) {// 로그인 창으로 이동
-			RequestDispatcher rd = request.getRequestDispatcher("/views/common/login.jsp");
-			rd.forward(request, response);
+			request.getRequestDispatcher("/views/common/login.jsp").forward(request, response);
 		} else if (action.equals("login")) { // 로그인 시
 			loginId = request.getParameter("id");
 			String pass = request.getParameter("pass");
@@ -67,11 +65,8 @@ public class UserController extends HttpServlet {
 
 			if (userDao.select_user(map)&& "N".equals(userDao.select_black_user(loginId))) {
 				// id, pass가 맞고 블랙리스트값이 N인 경우 --로그인 성공!
-				System.out.println("로그인 성공!");
-				request.getSession().setAttribute("loginId", loginId);
-				RequestDispatcher rd = request.getRequestDispatcher("/views/common/main.jsp");
-				rd.forward(request, response);
-
+				session.setAttribute("loginId", loginId);
+				request.getRequestDispatcher("/views/common/main.jsp").forward(request, response);
 			} else { // 로그인 실패시
 				
 				if ("Y".equals(userDao.select_black_user(loginId))) {// 블랙리스트가 맞으면 로그인 실패
@@ -90,24 +85,18 @@ public class UserController extends HttpServlet {
 			}
 
 		} else if (action.equals("loginOut")) {// 로그아웃
-			request.getSession().invalidate();
+			session.invalidate();
 			response.sendRedirect("/main?action=main");
 
 		} else if (action.equals("user_mypage")) {
 			/* MYPAGE이동 1. 회원정보조회 2. 회원MISSING정보조회 */
 
-			// ID파라미터 SESSION영역에 저장 -> REDIRECT이동시 공유
-
 			// 회원정보,회원MISSING정보 REQUEST객체 영역에 저장
-			UserDAO userDao = new UserDAO();
-			UserVO userlist = userDao.select_myinfo(loginId);
-			request.setAttribute("userlist", userlist);
-			List<PetVO> missinglist = userDao.select_mymissing(loginId);
-			request.setAttribute("missinglist", missinglist);
+			request.setAttribute("userlist", userDao.select_myinfo(loginId));
+			request.setAttribute("missinglist", userDao.select_mymissing(loginId));
 
 			// FORWARD이동
-			RequestDispatcher rd = request.getRequestDispatcher("/views/user/mypage.jsp");
-			rd.forward(request, response);
+			request.getRequestDispatcher("/views/user/mypage.jsp").forward(request, response);
 
 		} else if (action.equals("update_myinfo")) {
 			/* MYPAGE이동 1. 회원정보수정 */
@@ -123,15 +112,12 @@ public class UserController extends HttpServlet {
 			user.setBlack(request.getParameter("black"));
 
 			// 회원정보수정
-			UserDAO userDao = new UserDAO();
 			userDao.update_myinfo(user);
-
+			
 			// 회원정보,회원MISSING정보 SESSION객체 영역에 저장
-			UserVO userlist = userDao.select_myinfo(loginId);
-			HttpSession session = request.getSession();
-			session.setAttribute("userlist", userlist);
-			List<PetVO> missinglist = userDao.select_mymissing(loginId);
-			session.setAttribute("missinglist", missinglist);
+			
+			session.setAttribute("userlist", userDao.select_myinfo(loginId));
+			session.setAttribute("missinglist", userDao.select_mymissing(loginId));
 
 			// 리다이렉트이동
 			response.sendRedirect("/views/user/mypage.jsp");
@@ -141,10 +127,8 @@ public class UserController extends HttpServlet {
 
 			// ID와 MISSING_NO(공고번호) 얻기
 			int missing_no = Integer.parseInt(request.getParameter("missing_no"));
-			System.out.println("missing_no>>" + missing_no);
 
 			// 특정MISSING_NO(공고번호)의 인계날짜 SYSDATE입력
-			UserDAO userDao = new UserDAO();
 			if (userDao.update_mymissing(missing_no)) {
 				System.out.println("인계정보 수정 완료");
 			} else {
@@ -152,18 +136,15 @@ public class UserController extends HttpServlet {
 			}
 
 			// 회원정보,회원MISSING정보 SESSION객체 영역에 저장
-			UserVO userlist = userDao.select_myinfo(loginId);
-			HttpSession session = request.getSession();
-			session.setAttribute("userlist", userlist);
-			List<PetVO> missinglist = userDao.select_mymissing(loginId);
-			session.setAttribute("missinglist", missinglist);
+			session.setAttribute("userlist", userDao.select_myinfo(loginId));
+			session.setAttribute("missinglist", userDao.select_mymissing(loginId));
 
 			// 리다이렉트이동
 			response.sendRedirect("/views/user/mypage.jsp");
 		}else if(action.equals("withdraw")) {
 			
 			if(userDao.delete_user(loginId)) { // 회원 탈퇴
-				request.getSession().invalidate();
+				session.invalidate();
 				response.sendRedirect("/main");
 			}
 		}
